@@ -39,7 +39,7 @@
         </div>
         <div class="mb-3 mt-3" x-show="taskType == '/expirable-tasks/update/'">
             <label for="date_limit">Selecione a data limite da sua tarefa</label>
-            <input type="date" value="{{ $task->date_limit }}" id="date_limit"  min="{{date("Y-m-d")}}">
+            <input name="date_limit" type="date" value="{{ $task->date_limit }}" id="date_limit"  min="{{date("Y-m-d")}}">
         </div>
         <div class="d-flex justify-content-around mt-3">
             <button type="submit" class="btn btn-success">Enviar edição</button>

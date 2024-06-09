@@ -130,7 +130,7 @@ class DailyTaskController extends Controller
     public function markAsDone($id){
         $date = now()->toDateString();
 
-        DailyTask::where('id_daily_task', $id)->where('id_user', Auth::id())->increment('completed_number', 1,['last_completed' => $date]);
+        DailyTask::where('id_daily_task', $id)->where('id_user', Auth::id())->increment('number_of_completions', 1,['last_completed' => $date]);
 
         return redirect()->route('daily.task.index')->with(['msgSuccess' => 'Tarefa diária concluída!', 'txtColor' => 'text-success']);
     }

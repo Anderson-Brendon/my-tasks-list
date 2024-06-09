@@ -12,12 +12,14 @@
         <a class="btn btn-dark" href="{{ $urlFinished }}">Concluídas</a>
     </div>
     <div class="d-flex justify-content-center {{ session('msgSuccess') ? '' : 'd-none' }}">
-        <p class="msg-bg mt-3 p-1 text-center fs-3 tracking-in-expand-fwd-top border-3 rounded greenyellow">{{session('msgSuccess')}}</p>
+        <p class="msg-bg mt-3 p-1 text-center fs-3 tracking-in-expand-fwd-top border-3 rounded">
+            {{session('msgSuccess')}}
+        </p>
     </div>
     <div class="d-flex flex-wrap justify-content-evenly align-items-center">
         <div class="d-flex justify-content-center mt-3 {{count($tasks) > 0 ? 'd-none' : ''}}">
             <p class="msg-bg text-center fs-3 p-1 text-warning">
-                Nada por aqui
+                Sem tarefas disponíveis
             </p>
         </div>
         @if($taskType === 'daily')

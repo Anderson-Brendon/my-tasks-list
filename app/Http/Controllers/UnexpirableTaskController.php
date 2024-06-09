@@ -30,7 +30,7 @@ class UnexpirableTaskController extends Controller
         $urlAll ='/unexpirable-tasks';
         $urlPending = '/unexpirable-tasks/pending';
         $urlFinished = '/unexpirable-tasks/finished';
-        $title = 'Tarefas sem prazo';
+        $title = 'Tarefas sem prazo pendentes';
         return view('task.tasks-list',compact('tasks', 'taskType','title','urlAll', 'urlPending','urlFinished'));
     }
 
@@ -40,7 +40,7 @@ class UnexpirableTaskController extends Controller
         $urlAll ='/unexpirable-tasks';
         $urlPending = '/unexpirable-tasks/pending';
         $urlFinished = '/unexpirable-tasks/finished';
-        $title = 'Tarefas sem prazo';
+        $title = 'Tarefas sem prazo completadas';
         return view('task.tasks-list',compact('tasks', 'taskType','title','urlAll', 'urlPending', 'urlFinished'));
     }
 
@@ -72,7 +72,7 @@ class UnexpirableTaskController extends Controller
 
         $task->save();
 
-        return redirect()->route('unexpirable.task.index')->with('taskCreate', 'Tarefa sem prazo foi criada');
+        return redirect()->route('unexpirable.task.index')->with('msgSuccess', 'Tarefa sem prazo foi criada');
     }
 
     /**
@@ -121,9 +121,9 @@ class UnexpirableTaskController extends Controller
      */
     public function destroy(int $id_task)
     {
-        UnexpirableTask::where('id_task', Auth::id())->where('id_task', $id_task)->destroy();
-
-        redirect()->route('tasks.index')->with(['msgSuccess' => 'Tarefa sem prazo removida']);
+        UnexpirableTask::where('id_user', Auth::id())->where('id_unexpirable_task', $id_task)->delete();
+        
+        return redirect()->route('unexpirable.task.index')->with(['msgSuccess' => 'Tarefa sem prazo deletada']);
     }
 
     public function markAsDone($id){

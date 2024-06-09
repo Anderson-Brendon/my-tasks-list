@@ -60,6 +60,10 @@ class ExpirableTaskController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->date_limit == null){
+            redirect()->back()->with(['warning' => 'É necessário inserir a data.']);
+        }
+
         $request->validate([
             'task_title' => 'required|max:60',
             'task_description'=>'max:300',
@@ -77,7 +81,7 @@ class ExpirableTaskController extends Controller
 
         $task->save();
 
-        return redirect()->route('expirable.task.index')->with('taskCreate', 'Tarefa com data limite foi criada');
+        return redirect()->route('expirable.task.index')->with('msgSuccess', 'Tarefa com data limite foi criada');
     }
 
     /**
@@ -97,7 +101,7 @@ class ExpirableTaskController extends Controller
         $task = ExpirableTask::with(['taskLevel'])->where('id_user', Auth::id())->find($id);
         $id = $task->id_expirable_task;
         $putUrl = '/expirable-tasks/update/';
-        $title = 'Editando tarefa com data';
+        $title = 'Editando tarefa com data limite';
         return view('task.edit-task', compact('task', 'putUrl', 'id', 'title'));
     }
 
@@ -113,14 +117,15 @@ class ExpirableTaskController extends Controller
             'date_limit' => 'required'
            ]);
 
-           $taskData = ['task_title' => $request->task_title,
-           'task_description' => $request->task_description,
-           'id_task_level' => $request->task_level,
-           'date_limit' => $request->date_limit];
+        $taskData = ['task_title' => $request->task_title,
+        'task_description' => $request->task_description,
+        'id_task_level' => $request->task_level,
+        'date_limit' => $request->date_limit];
 
-            ExpirableTask::where('id_user', Auth::id())->find($id_task)->update($taskData);
+        ExpirableTask::find($id_task)->where('id_user', Auth::id())->update($taskData);
+        //ExpirableTask::where('id_user', Auth::id())->find($id_task)->update($taskData);
 
-            return redirect()->route('expirable.task.index')->with(['msgSucess' => 'Tarefa com data limite foi atualizada']);
+        return redirect()->route('expirable.task.index')->with(['msgSuccess' => 'Tarefa com data limite foi editada']);
     }
 
     /**

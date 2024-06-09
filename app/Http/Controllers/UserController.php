@@ -54,8 +54,8 @@ class UserController extends Controller
     {
         $userData = Auth::user();
         $dtDoneToday = DailyTask::whereDate('last_completed', '=', Carbon::today())->count();
-        $dtAllTimesDone = DailyTask::where('id_user', Auth::id())->sum('completed_number');
-        $dtMostRepeated = DailyTask::where('id_user', Auth::id())->where('last_completed', ">", 0)->orderBy('completed_number', 'desc')->first();
+        $dtAllTimesDone = DailyTask::where('id_user', Auth::id())->sum('number_of_completions');
+        $dtMostRepeated = DailyTask::where('id_user', Auth::id())->where('last_completed', ">", 0)->orderBy('number_of_completions', 'desc')->first();
         $unexTotal = UnexpirableTask::where('id_user', Auth::id())->count();
         $unexDone = UnexpirableTask::where('id_user', Auth::id())->where('is_completed',1)->count();
         $unexPending = UnexpirableTask::where('id_user', Auth::id())->where('is_completed',0)->count();

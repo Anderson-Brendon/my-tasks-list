@@ -20,7 +20,7 @@
             <label for="name" class="form-label">Nome de usuário</label>
         </div>
         <div class="form-floating mt-3">
-            <input autocomplete="off" class="form-control" id="password" name="password" class="form-control-lg" type="text" maxlength="30" placeholder="Type your password here"  required>
+            <input autocomplete="off" class="form-control" id="password" name="password" class="form-control-lg" type="password" maxlength="30" placeholder="Type your password here"  required>
             <label for="password" class="form-label">Senha</label>
         </div>
         <div class="form-floating mt-3">

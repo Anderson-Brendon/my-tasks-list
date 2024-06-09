@@ -4,7 +4,7 @@
 <main class="vh-100 d-flex flex-column justify-content-around">
     <section>
         <h1 class="text-center">Sobre o site</h1>
-    <p class="text-center">Foi criado com o intuito de aprender laravel, um framework php, mas se for útil pra você sinta-se livre pra usar.</p>
+        <p class="text-center">Foi criado com o intuito de aprender laravel, um framework php, então deve ter bugs :/.</p>
     </section>
     <section class="d-flex flex-column align-items-center ">
         <header>

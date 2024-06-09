@@ -7,6 +7,7 @@
             @csrf
             <header>
                 <h1 class="text-center">Criar uma tarefa</h1>
+                <p>{{session('warning')}}</p>
             </header>
             <div class="form-floating">
                 <input class="form-control" id="task_title" name="task_title" type="text" required placeholder="Title here">
@@ -28,7 +29,7 @@
                 </div>
                 <div class="form-check-inline">
                     <input class="form-check-input" id="task_level_hard" name="task_level" type="radio" value="3">
-                    <label class="form-check-label" for="task_level_hard">Dificil</label>
+                    <label class="form-check-label" for="task_level_hard">Difícil</label>
                 </div>
             </div>
             <div class="d-flex flex-column align-items-center">
@@ -39,10 +40,10 @@
                     <option value="/expirable-tasks/store">Tarefa com data limite</option>
                 </select>
             </div>
-            <div id="taskTypeDescription" class="bg-dark p-1 ">
-                <p class="text-warning" x-show="taskUrl == '/daily-tasks/store'">Essa tarefa pode ser feita uma vez por dia, selecione para rotinas diárias como ler um livro ou estudar</p>
-                <p class="text-warning" x-show="taskUrl == '/unexpirable-tasks/store'">Esse tipo de tarefa não tem data pra conclusão, você pode completar a qualquer momento</p>
-                <p class="text-warning" x-show="taskUrl == '/expirable-tasks/store'">O único tipo de tarefa no qual você pode "falhar" se não finalizar antes do prazo escolhido, você pode completar a tarefa mesmo após o prazo</p>
+            <div id="taskTypeDescription" class="bg-dark p-1">
+                <p class="text-warning text-center" x-show="taskUrl == '/daily-tasks/store'">Essa tarefa pode ser feita uma vez por dia, selecione para rotinas diárias como ler um livro ou estudar</p>
+                <p class="text-warning text-center" x-show="taskUrl == '/unexpirable-tasks/store'">Esse tipo de tarefa não tem data pra conclusão, você pode completar a qualquer momento</p>
+                <p class="text-warning text-center" x-show="taskUrl == '/expirable-tasks/store'">O único tipo de tarefa no qual você pode "falhar" se não finalizar antes do prazo escolhido, você pode completar a tarefa mesmo após o prazo</p>
             </div>
             <div x-show="taskUrl == '/expirable-tasks/store'">
                 <label for="date_limit" class="mt-3">Selecione a data limite da sua tarefa</label>

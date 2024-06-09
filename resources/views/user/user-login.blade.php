@@ -15,7 +15,7 @@
            <label for="name" >Seu nome de usuário</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" type="text" name="password" id="password" minlength="8" placeholder="Password" autocomplete="off">
+            <input type="password" class="form-control" type="text" name="password" id="password" minlength="8" placeholder="Password" autocomplete="off">
             <label for="password">Sua senha</label>
         </div>
         <div>
